@@ -1,0 +1,81 @@
+# =========================
+# VS Code
+# =========================
+.vscode/
+
+# =========================
+# Build & Binaries
+# =========================
+# Класичні папки збірки
+build/
+bin/
+obj/
+out/
+target/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+*.cmake
+install_manifest.txt
+compile_commands.json
+
+# =========================
+# Compilers & Objects
+# =========================
+# Objects
+*.o
+*.obj
+
+# Static and dynamic libraries
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+
+# Executeble
+*.exe
+*.out
+*.app
+
+# =========================
+# System (Linux / Fedora / KDE)
+# =========================
+# File System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# KDE / Dolphin
+.directory
+.Trash-*
+*~
+*.kate-swp
+
+# =========================
+# Debugging
+# =========================
+# Core dumps
+core.*
+*.core
+
+# Logs, tests, etc.
+*.log
+*.pid
+*.su
+*.idb
+*.pdb
+
+# Valgrind, gprof
+gmon.out
+valgrind.out*
+.cache/
+
+# etc.
+*.hex
+*.elf
+*.eep
+*.map
