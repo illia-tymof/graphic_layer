@@ -34,8 +34,18 @@ namespace Graphic
             free();
         }
 
+        template <typename T>
+        void update(T* pixels)
+        {
+            selectAll();
+            SDL_UpdateTexture(m_texture, nullptr, pixels, sizeof(*pixels) / m_selectRect.h);
+            selectAll();
+        }
+
         bool load(const Renderer& renderer, const std::string& path);
         bool loadText(const Renderer& renderer, const std::string& text, const Font& font, Uint8 r = 0, Uint8 g = 0, Uint8 b = 0, Uint8 a = 0);
+
+        bool create(const Renderer& renderer, Uint32 format, int access, int w, int h);
 
         /* load and ignore specific color */
         bool loadWithColorKey(const Renderer& renderer, const std::string& path, Uint8 r = 0, Uint8 g = 0, Uint8 b = 0, Uint8 a = 0, int flag = SDL_TRUE);

@@ -1,13 +1,34 @@
 #include "graphic/graphic_layer.h"
 #include <SDL2/SDL.h>
 
+#include <array>
 int main()
 {
     if (Graphic::init())
     {
+        std::array<bool, 5*5> mono {
+            1, 0, 1, 0, 0,
+            0, 1, 1, 0, 0,
+            0, 0, 1, 0, 0,
+            0, 0, 1, 1, 0,
+            0, 0, 1, 0, 1
+        };
+
         Graphic::Window win { "GRaphic LaYeR" };
         Graphic::Renderer rend {};
         rend.create(win);
+
+
+        Graphic::Texture texture {};
+        texture.create(rend, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_STREAMING, 5, 5);
+        
+        std::array<Uint32, 5*5> newTexture {};
+        for (std::size_t i {}; i < newTexture.size(); ++i)
+        {
+            newTexture[i] = (mono[i]) ? 0x00FFB000 : 0x000A0600;
+        }
+
+        texture.update(&newTexture);
 
         SDL_Event event;
         bool running { true };
@@ -31,6 +52,7 @@ int main()
             rend.setColor(200, 0, 200, 255);
             SDL_RenderDrawLine(rend.getRenderer(), 0, 0, win.getWidth(), win.getHeight());
 
+            rend.copy(texture, 0, 0, 100, 100);
             rend.present();
         }
     }

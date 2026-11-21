@@ -52,6 +52,22 @@ bool Graphic::Texture::loadText(const Renderer& renderer, const std::string& tex
     return true;
 }
 
+bool Graphic::Texture::create(const Renderer& renderer, Uint32 format, int access, int w, int h)
+{
+    free();
+    m_texture = SDL_CreateTexture(renderer.getRenderer(), format, access, w, h);
+    if (m_texture == nullptr)
+    {
+        std::cerr << "Can't load texture. SDL error: " << SDL_GetError() << '\n';
+        return false;
+    }
+
+    SDL_QueryTexture(m_texture, nullptr, nullptr, &(m_selectRect.w), &(m_selectRect.h));
+    selectAll();
+
+    return true;
+}
+
 bool Graphic::Texture::loadWithColorKey(const Renderer& renderer, const std::string& path, Uint8 r, Uint8 g, Uint8 b, Uint8 a, int flag)
 {
     free();
