@@ -30,9 +30,9 @@ namespace Graphic
         /* usefull for auto scaling */
         void setLogicalSize(int w, int h);
 
-        void getLogicalSize(int& w, int& h);
+        void getLogicalSize(int& w, int& h) const;
     
-        void getLogicalCoords(int& x, int& y);
+        void getLogicalCoords(int& x, int& y) const;
 
         void clear();
         bool copy(const Texture& texture, int x = 0, int y = 0, int w = 0, int h = 0,
@@ -41,7 +41,7 @@ namespace Graphic
 
         void free()
         {
-            if (m_renderer != nullptr) SDL_DestroyRenderer(m_renderer);
+            if (m_renderer != nullptr) { SDL_DestroyRenderer(m_renderer); m_renderer = nullptr; }
         }
 
         SDL_Renderer* getRenderer() const { return m_renderer; }

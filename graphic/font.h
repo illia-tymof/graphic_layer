@@ -24,7 +24,7 @@ namespace Graphic
 
         void free()
         {
-            if (m_font != nullptr) { TTF_CloseFont(m_font); }
+            if (m_font != nullptr) { TTF_CloseFont(m_font); m_font = nullptr; }
         }
 
         TTF_Font* getFont() const { return m_font; }

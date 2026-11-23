@@ -28,7 +28,7 @@ void Graphic::Timer::unpause()
     }
 }
 
-Uint32 Graphic::Timer::getTicks()
+Uint32 Graphic::Timer::getTicks() const
 {
     Uint32 ticks { 0 };
     if (m_isStarted)

@@ -7,6 +7,7 @@
 #include "font.h"
 #include "image.h"
 #include "renderer.h"
+#include "sound.h"
 #include "sprite.h"
 #include "texture.h"
 #include "timer.h"
@@ -14,44 +15,39 @@
 #include "window.h"
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 
 namespace Graphic
 {
-    static inline bool init()
+    namespace Init
     {
-        if (SDL_Init(SDL_INIT_EVERYTHING))
+        enum InitType
         {
-            std::cout << "Can't init SDL. SDL error: " << SDL_GetError() << '\n';
-            return false;
-        }
-
-        /* init all image extensions */
-        int imgFlags { IMG_INIT_AVIF | IMG_INIT_JPG | IMG_INIT_JXL | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP };
-
-        if ((IMG_Init(0) & imgFlags) != imgFlags)
-        {
-            if ((IMG_Init(imgFlags) & imgFlags) != imgFlags)
-            {
-                std::cerr << "Can't init IMG. IMG error: " << IMG_GetError() << '\n';
-                return false;
-            }
-        }
-
-        if (TTF_Init())
-        {
-            std::cout << "Can't init TTF. TTF error: " << TTF_GetError() << '\n';
-            SDL_Quit();
-            return false;
-        }
-        return true;
+            init_undefined = 0,
+            init_sdl = 0x1 << 0,
+            init_img = 0x1 << 1,
+            init_ttf = 0x1 << 2,
+            init_mix = 0x1 << 3,
+            init_all = 0xF
+        };
     }
 
-    static inline void quit()
-    {
-        TTF_Quit();
-        IMG_Quit();
-        SDL_Quit();
-    }
+    bool init(int subsystem);
+    void quit();
+
+    inline unsigned initedSubsystems {};
+
+    /* IMG flags */
+    inline int imgFlags { IMG_INIT_AVIF | IMG_INIT_JPG | IMG_INIT_JXL | IMG_INIT_PNG | IMG_INIT_TIF | IMG_INIT_WEBP };
+
+    /* Mixer parameters */
+    inline int mixerFlags { MIX_INIT_MP3 | MIX_INIT_WAVPACK | MIX_INIT_OGG };
+    inline int soundFrequency { MIX_DEFAULT_FREQUENCY };
+    inline Uint16 soundFormat { MIX_DEFAULT_FORMAT };
+    inline int soundChannels { MIX_DEFAULT_CHANNELS };
+    inline int soundChunkSize { 2048 };
 }
 
 #endif

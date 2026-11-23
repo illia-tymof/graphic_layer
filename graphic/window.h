@@ -29,8 +29,8 @@ namespace Graphic
     
         void free()
         {
-            if (m_surface != nullptr) SDL_FreeSurface(m_surface);
-            if (m_window != nullptr) SDL_DestroyWindow(m_window);
+            if (m_surface != nullptr) { SDL_FreeSurface(m_surface); m_surface = nullptr; }
+            if (m_window != nullptr) { SDL_DestroyWindow(m_window); m_window = nullptr; }
         }
 
         int getWidth() { SDL_GetWindowSize(m_window, &m_w, &m_h); return m_w; }

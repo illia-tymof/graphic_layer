@@ -33,7 +33,7 @@ void Graphic::Renderer::setLogicalSize(int w, int h)
     SDL_RenderSetLogicalSize(m_renderer, w, h);
 }
 
-void Graphic::Renderer::getLogicalSize(int& w, int& h)
+void Graphic::Renderer::getLogicalSize(int& w, int& h) const
 {
     SDL_Rect vp {};
     SDL_RenderGetViewport(m_renderer, &vp);
@@ -42,7 +42,7 @@ void Graphic::Renderer::getLogicalSize(int& w, int& h)
     h = vp.h;
 }
 
-void Graphic::Renderer::getLogicalCoords(int& x, int& y)
+void Graphic::Renderer::getLogicalCoords(int& x, int& y) const
 {
     SDL_Rect vp {};
     SDL_RenderGetViewport(m_renderer, &vp);

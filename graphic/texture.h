@@ -61,7 +61,7 @@ namespace Graphic
 
         void free()
         {
-            if (m_texture != nullptr) SDL_DestroyTexture(m_texture);
+            if (m_texture != nullptr) { SDL_DestroyTexture(m_texture); m_texture = nullptr; }
         }
 
         SDL_Texture* getTexture() const { return m_texture; }

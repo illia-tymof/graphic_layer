@@ -5,7 +5,7 @@ OBJ_NAME = $(BUILD_DIR)/main
 
 CC = g++
 COMPILER_FLAGS = -w -g -O0
-LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
+LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
 
 all: $(OBJ_NAME)
 

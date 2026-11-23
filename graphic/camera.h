@@ -32,9 +32,9 @@ namespace Graphic
             m_scale = scale;
         }
 
-        int getBlockScale() { return m_scale; }
-        float getHeight() { return m_h; }
-        float getWidth() { return m_w; }
+        int getBlockScale() const { return m_scale; }
+        float getHeight() const { return m_h; }
+        float getWidth() const { return m_w; }
 
         void setPosition(float x, float y)
         {
@@ -42,13 +42,13 @@ namespace Graphic
             m_y = y;
         }
 
-        int worldToScreenX(float x)
+        int worldToScreenX(float x) const
         {
             /* just simply x associated to screen position multiplied by scale specifier */
             return static_cast<int>((x - m_x) * m_scale);
         }
 
-        int worldToScreenY(float y)
+        int worldToScreenY(float y) const
         {
             /*
              * A little more complex here.

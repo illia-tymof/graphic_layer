@@ -33,7 +33,7 @@ namespace Graphic
         void render(Renderer& renderer);
     
         void setFrame(int frame) { m_currentFrame = frame; }
-        int getTotalFrames() { return m_totalFrames; }
+        int getTotalFrames() const { return m_totalFrames; }
 
     private:
         Texture* m_spriteSheet { nullptr };

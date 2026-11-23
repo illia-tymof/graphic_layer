@@ -32,7 +32,7 @@ namespace Graphic
 
         void free()
         {
-            if (m_surface != nullptr) SDL_FreeSurface(m_surface);
+            if (m_surface != nullptr) { SDL_FreeSurface(m_surface); m_surface = nullptr; }
         }
 
         SDL_Surface* getSurface() const { return m_surface; }

@@ -19,7 +19,7 @@ namespace Graphic
         void start();
         void pause();
         void unpause();
-        Uint32 getTicks();
+        Uint32 getTicks() const;
         void stop();
 
         bool isStarted() const { return m_isStarted; }

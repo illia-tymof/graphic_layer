@@ -4,7 +4,7 @@
 #include <array>
 int main()
 {
-    if (Graphic::init())
+    if (Graphic::init(Graphic::Init::init_sdl | Graphic::Init::init_img | Graphic::Init::init_mix))
     {
         std::array<bool, 5*5> mono {
             1, 0, 1, 0, 0,
@@ -17,7 +17,6 @@ int main()
         Graphic::Window win { "GRaphic LaYeR" };
         Graphic::Renderer rend {};
         rend.create(win);
-
 
         Graphic::Texture texture {};
         texture.create(rend, SDL_PIXELFORMAT_RGB888, SDL_TEXTUREACCESS_STREAMING, 5, 5);

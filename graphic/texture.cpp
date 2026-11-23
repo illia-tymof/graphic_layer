@@ -58,7 +58,7 @@ bool Graphic::Texture::create(const Renderer& renderer, Uint32 format, int acces
     m_texture = SDL_CreateTexture(renderer.getRenderer(), format, access, w, h);
     if (m_texture == nullptr)
     {
-        std::cerr << "Can't load texture. SDL error: " << SDL_GetError() << '\n';
+        std::cerr << "Can't create texture. SDL error: " << SDL_GetError() << '\n';
         return false;
     }
 
